@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>SumWear</display-name>
+  <context-param>
+    <description>
+  	when deploying to openshift change the root 
+  	to an empty value (so that when the war file ROOT.war gets 
+  	created the app will be available at sumwear-angeloweb.rhcloud.com 
+  	rather than sumwear-angeloweb.rhcloud.com/SumWear), while within 
+  	Tomcat the root need to be /SumWear for the internal mapping to 
+  	work correctly.
+  	</description>
+    <param-name>root</param-name>
+    <param-value>/SumWear</param-value>
+  </context-param>
+  <!-- <servlet>
+    <servlet-name>register</servlet-name>
+    <jsp-file>/register.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>register</servlet-name>
+    <url-pattern>/Controller?dest=reg</url-pattern>
+  </servlet-mapping> -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file></welcome-file>
+  </welcome-file-list>
+  <resource-ref>
+    <description>DB Connection</description>
+    <res-ref-name>jdbc/sumwear</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+</web-app>

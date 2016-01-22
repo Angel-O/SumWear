@@ -1,0 +1,388 @@
+body{
+font-size: 1em;
+font-family: Verdana, Arial, sans-serif;
+background-color: #eae7c7;
+line-height: 1.7em;
+}
+
+h1.logo{
+color: #ffffff;
+background-image: url(images/enlight.png);
+background-repeat: no-repeat;
+background-size: 10em 4.3em;
+background-position: center;
+text-align: center;
+padding: 1.5em 0;
+margin-top: 0.2em;
+margin-left: 0;
+margin-right: 0;
+margin-bottom: 0;
+text-shadow: 0 0 10px #f81818;
+}
+
+#tagdiv{
+background-color: #e39317 /*orange */;
+position: relative;
+z-index: 3;
+text-align: center;
+}
+
+h3.tagline{
+color: #ffffff;
+font-family: Verdana, Arial, sans-serif;
+/*font-size: 0.85em;*/
+
+
+padding: 1.5em 0;
+text-shadow: 0 0 10px #1A5494 /*#f81818*/;
+padding: 0.5em 0;
+margin: 0;
+border-top: 0px solid #0F966D;
+border-bottom: 3px solid #0F966D;
+}
+
+h2{
+margin-left: 1.2em;
+color: #1A5494;
+}
+
+h2.homepage{
+display: inline;
+}
+
+li.homepage{
+float: left;
+width: 50%;
+line-height: 1.45em;
+}
+
+span.venue{
+font-weight: bold;
+}
+
+p{
+text-align: left;
+font-size: 0.95em;
+/*border: 1px solid #000000;*/
+margin: 2em 2em;
+}
+
+#bottom{
+padding-top: 2em;
+clear: left;
+}
+
+/*	COMMON AREAS  */
+
+#pagecontainer{
+width: 960px;
+margin : 0 auto;
+border: 1px solid #ffffff;
+background-color: #ffffff;
+}
+
+#topofpage{
+/*border: 3px solid #000000;*/
+background: /*#e39317 #efe9ef*/ url(images/background.png);
+background-size: 960px 15em;
+margin: 1.5em 1.5em 0 1.5em;
+border-bottom-left-radius: 0.95em;
+border-bottom-right-radius: 0.95em;
+position: relative;
+z-index:2;
+}
+
+#bottomofpage{
+background: /*#efe9ef*/ url(images/background.png);
+font-family: "Courier New", Arial, "sans serif";
+border-top: 3px solid #1A5494;
+clear: both;
+margin: 1.5em 1.5em 0 1.5em;
+padding: 0 0.3em;
+color: #1A5494;
+}
+
+#location{
+margin-top: 0.5em;
+margin-left: 4em;
+margin-bottom: 0;
+font-size: 0.7em;
+letter-spacing: 2px;
+}
+
+#hiddenlocation{
+margin-top: 0.5em;
+margin-left: 4em;
+margin-bottom: 0.5em;
+font-size: 0.7em;
+letter-spacing: 2px;
+visibility: hidden;
+}
+
+#toplinks{
+font-size: 0.85em;
+margin: 1em 0.3em;
+}
+
+#toplinks a:link{
+text-decoration: none;
+color: #1A5494;
+}
+
+#toplinks li{
+font-size: 0.8em;
+display: inline;
+float: right;
+padding: 0 0.3em;
+}
+
+#signindiv {
+float: left;
+font-size: 0.8em;
+position: absolute;
+right: -0.8em;
+padding-right: 2em;
+z-index: 4;
+}
+
+#signindiv ul{
+list-style-type: none;
+font-weight: bold;
+margin-top: 0.35em;
+margin-right: 0;
+overflow: hidden;
+padding: 0em;
+}
+
+#signindiv ul li{
+float: left;
+margin-left: 0em;
+border-bottom-left-radius: 0.95em;
+border-bottom-right-radius: 0.95em;
+}
+
+#signindiv ul li a{
+display: block;
+text-align: center;
+padding: 0.5em 1em;
+border-bottom-left-radius: 0.95em;
+border-bottom-right-radius: 0.95em;
+}
+
+#signindiv a:link{
+text-decoration: none;
+color: white;
+}
+
+#signindiv a:visited{
+color: white;
+}
+
+#signindiv li:hover{
+background-color: #e74c17;
+}
+
+/* 	MAIN NAVIGATION BAR	  */
+
+#mainnavigationmenu{
+border-top: 3px solid #1A5494;
+background-color: #ffffff;
+/* position: fixed; */
+}
+
+#mainnavigationmenu ul{
+padding: 0;
+margin: 1.5em 0 0 0;
+overflow: hidden;
+}
+
+#mainnavigationmenu ul li{
+float: left;
+list-style-type: none;
+background-color: #e76f1f;
+border-bottom-left-radius: 0.95em;
+border-bottom-right-radius: 0.95em;
+}
+
+#mainnavigationmenu ul li a{
+display: block;
+text-decoration: none;
+text-align: center;
+padding: 0.5em 3.5em;
+color: #ffffff;
+text-shadow: 0 0 10px #f81818;
+border-bottom-left-radius: 0.95em;
+border-bottom-right-radius: 0.95em;
+}
+
+#mainnavigationmenu ul li a:hover{
+background-color:#e74c17
+}
+
+a.currentpage{
+background-color: #e74c17;
+}
+
+
+
+
+
+
+/*	LEFT MENU	*/
+
+#navigationleftcol{
+float: left;
+width: 18%; /*less than 20 if you want to add the border*/
+margin: 0;
+}
+
+#navigationleftcol ul{
+margin: 0 0; /*top&bottom, left&right*/
+padding: 0.12em;
+border-radius: 0.95em;
+}
+
+#navigationleftcol ul li{
+border-bottom: 3px solid #1A5494;
+border-right: 3px solid #1A5494/*#237854*/;
+list-style-type: none;
+border-bottom-right-radius: 0.95em;
+border-bottom-left-radius: 0.95em;
+margin-bottom: 0.3em;
+}
+
+#navigationleftcol ul li a{
+display: block;
+text-decoration: none;
+padding: 0.5em 0;
+text-align: center;
+font-weight: bold;
+font-size: 0.95em;
+background-color: #0F966D;
+border-bottom-right-radius: 0.95em;
+border-bottom-left-radius: 0.95em;
+color: #ffffff;
+text-shadow: 0 0 10px #1A5494;
+}
+
+#navigationleftcol ul li a:hover{
+background-color: #1A5494;
+}
+
+/*img.menu{
+float: right;
+padding-right: 0.2em;
+}*/
+
+/*	CONTENT	*/
+
+#columnsbox{
+overflow: hidden;
+background: url(images/fauxcolontheleft.gif) repeat-y;
+margin: 1em 1.5em;
+}
+
+#contentrightcol{
+float: left;
+width: 75%; /*less than 80 if you want to add the border*/
+margin: 0 1.5em;
+padding: 0em;
+}
+
+#contentrightcol  ul li{
+padding: 0.5em 0em;
+}
+
+#latestbox h2{
+/*border: 1px solid #000000;*/
+padding-top: 0;
+margin-top: 0;
+margin-bottom: 2em;
+}
+
+img{
+margin-left: 1.3em;
+}
+
+
+#content{
+/*border: 3px solid violet;*/
+margin: 0em 1.5em;
+padding: 0.5em 1.5em;
+}
+
+
+ul.offer{
+margin: 0 2em;
+font-size: 1em;
+padding-left: 1em;
+}
+
+ul.offer a{
+font-size: 0.7em;
+}
+
+span.introduction{
+font-size: 1.2em;
+font-weight: bold;
+color: #1A5494;
+}
+
+span.brand{
+color: #1A5494;
+font-weight: bold;
+font-size: 1.1em;
+}
+
+article{
+margin-bottom: 2em;
+/*border: 3px solid green;*/
+}
+
+#formdiv{
+margin-left: 2em;
+/* background-color: #eae7c7; */
+}
+
+form{
+display: table;
+}
+
+form p{
+display: table-row;
+}
+
+label{
+display: table-cell;
+padding-bottom: 0.7em;
+}
+
+input{
+display: table-cell;
+margin-left: 1.5em;
+}
+
+.error{
+color: red;
+font-size: 0.8em;
+}
+
+.prompt{
+color: #1A5494;
+font-size: 0.8em;
+}
+
+label.error{
+font-size: 0.7em;
+text-align: left;
+position: relative;
+bottom: 0.4em;
+left: 0.4em;
+}
+
+.button{
+float: right;
+/* border-bottom-right-radius: 0.95em;
+border-bottom-left-radius: 0.95em; */
+}
+
