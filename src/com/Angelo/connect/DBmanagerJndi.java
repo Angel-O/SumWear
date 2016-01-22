@@ -84,14 +84,14 @@ public class DBmanagerJndi extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
-		
+		PrintWriter out = response.getWriter();
 		
 		Connection conn = null;
 		try {
 			conn = ds.getConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (SQLException | NullPointerException e) {	
+			out.println("Cannot connect to database at the moment, please try again later");
+			return;
 		}
 		
 		// use connection
@@ -152,16 +152,15 @@ public class DBmanagerJndi extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(pageToGo);
 			dispatcher.forward(request, response);
 			
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			out.println("Something went wrong, try again later");
 		}
 		
 		try {
 			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (SQLException | NullPointerException e) {
+			
+			out.println("bye");
 		}
 	}
 
