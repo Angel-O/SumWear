@@ -14,5 +14,8 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="D:/Users/Specs/JavaProjects/CUSTOM_LIBRARIES/mysql-connector-java-5.0.8/mysql-connector-java-5.0.8-bin.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Specs/JavaProjects/CUSTOM_LIBRARIES/javax.mail.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Specs/JavaProjects/CUSTOM_LIBRARIES/javax.servlet.jsp.jstl-1.2.1.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Specs/JavaProjects/CUSTOM_LIBRARIES/javax.servlet.jsp.jstl-api-1.2.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

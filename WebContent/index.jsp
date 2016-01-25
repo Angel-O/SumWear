@@ -1,22 +1,16 @@
-<% String root = getServletContext().getInitParameter("root"); %>
-<!doctype html>
-<html>
-	<head>
-		<title>SumWear - Home page</title>
-		
-<%@ include file = "includes/header.jsp" %>
 <%@ page import = "java.io.PrintWriter, java.io.IOException" %>
-
-				<nav id = "mainnavigationmenu">
+<%! String title = "SumWear - Home page"; %>
+<% request.setAttribute("title", title); %>
+	<%@ include file = "includes/header.jsp" %>
+			<nav id = "mainnavigationmenu">
 					<ul>
 						<li><a class = "currentpage">HOME</a></li>
-						<li><a href = "<%= root %>/Controller?dest=shop">SHOP</a></li>
-						<li><a href = "<%= root %>/Controller?dest=join">JOIN US</a></li>
+						<li><a href = "<%= root %>/Home?dest=shop">SHOP</a></li>
+						<li><a href = "<%= root %>/Home?dest=join">JOIN US</a></li>
 					</ul>
-				</nav>
-			</header>
+			</nav>
 			<nav id = "hiddenlocation">
-				<a href = "<%= root %>/Controller?dest=home">home</a>
+				<a href = "<%= root %>/Home">home</a>
 			</nav>
 			<section id = "content">
 				<article>
@@ -63,19 +57,10 @@
 				</article>
 			</section>
 			
-<jsp:useBean id="hitCounter" class="com.Angelo.beans.Counter" scope="application"></jsp:useBean>
-<% 
+	<jsp:useBean id="hitCounter" class="com.Angelo.beans.Counter" scope="application"></jsp:useBean>
+	<% 
+		String path = getServletContext().getInitParameter("OPENSHIFT_LOG_DIR");
+		hitCounter.logCount(path);
+	%>
+<c:import url="includes/footer.jsp"/>
 
-hitCounter.incrementCounter();
-int counter = hitCounter.getCounter();
-//hitCounter.logCount("counter.log", counter);
-
-request.setAttribute("path",(getServletContext().getRealPath("/")+"counter.log"));
-
-String path = (String)request.getAttribute("path");
-
-
-
-%>
-
-<%@ include file="/includes/footer.jsp" %>

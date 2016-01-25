@@ -1,11 +1,14 @@
 package com.Angelo.beans;
 
-import java.io.PrintWriter;
 import java.util.Date;
+import java.util.TimeZone;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class Counter {
 	
 	private static int counter = 0;
@@ -23,22 +26,20 @@ public class Counter {
 		setCounter(Counter.counter);
 	}
 	
-	public static void logCount(String fileName, int count) throws IOException {
+	public static void logCount(String path) throws IOException {
 		
-		File file;
-		try {
-			file = new File(fileName);
-			file.createNewFile();
-			FileWriter writer = new FileWriter(file.getPath());
-			String date = new Date().toString();
-			writer.write(count+" "+date);
-			//System.out.println(file.getPath());
-			writer.close();
+		DateFormat formatter = new SimpleDateFormat();
+		formatter.setTimeZone(TimeZone.getTimeZone("Europe/London"));
+		Counter.incrementCounter();
+		int toBeLogged = Counter.getCounter();
+		String fileName = "counter.log";
+		PrintWriter out = new PrintWriter(new FileOutputStream (new File(path+fileName), true));
+		Date date = new Date();
+		String dateString = formatter.format(date);
+		if(toBeLogged == 1){
+			out.println("Application restarted...");
 		}
-		catch (FileNotFoundException e){
-			System.out.println("file not found");
-		}
+		out.println("hit: "+toBeLogged+", date: "+dateString);	
+		out.close();
 	}
-	
-	
 }

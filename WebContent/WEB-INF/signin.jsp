@@ -1,21 +1,18 @@
-<% String root = getServletContext().getInitParameter("root"); %>
-<!doctype html>
-<html>
-	<head>
-		<title>SumWear - Sign in page</title>
-<%@ page import = "java.util.HashMap" %>	
+<%-- <%@ page import = "java.util.HashMap" %> --%>	
+<%! String title = "SumWear - Sign in page"; %>
+<% request.setAttribute("title", title); %>
 <%@ include file="/includes/header.jsp" %>
 
 				<nav id = "mainnavigationmenu">
 					<ul>
-						<li><a href = "<%= root %>/Controller?dest=home">HOME</a></li>
-						<li><a href = "<%= root %>/Controller?dest=shop">SHOP</a></li>
-						<li><a href = "<%= root %>/Controller?dest=join">JOIN US</a></li>
+						<li><a href = "<%= root %>/Home">HOME</a></li>
+						<li><a href = "<%= root %>/Home?dest=shop">SHOP</a></li>
+						<li><a href = "<%= root %>/Home?dest=join">JOIN US</a></li>
 					</ul>
 				</nav>
 			</header>
 			<nav id = "location">
-				<a href = "<%= root %>/Controller?dest=home">home</a> > sign in
+				<a href = "<%= root %>/Home">home</a> > sign in
 			</nav>
 			<section id = "content">
 				<article>
@@ -25,31 +22,29 @@
 					<br/><br/>
 					<div id="formdiv">
 						
-						<% HashMap<String, String> errors = (HashMap<String,String>) request.getAttribute("errors"); %>
+						<%-- <% HashMap<String, String> errors = (HashMap<String,String>) request.getAttribute("errors"); %>
+						<% 
+							String email = ""; 
+							//User user = (User) session.getAttribute("loggedInUser"); // user is declared in the header!!!
+							email = user != null ?  user.getEmail() : (String) request.getAttribute("email");
+						%> --%>
 						
-						<h5 class="<%= request.getAttribute("class") %>"><%= request.getAttribute("notification") %></h5>
-						
-						<form method ="post" action="<%= root %>/Controller">
+						<h5 class='<c:out value = "${h5class}"/>'> <c:out value="${notification}"/> </h5>
+						<form method ="post" action="<%= root %>/Home">
 						
 							<p>
 								<label for="email"> Email: </label>
-								<input type="text" name="email" value="<%= request.getAttribute("email") %>"/>
-								<label for="email" class="error"> <%= errors.get("emailError") %>  </label>
+								<input type="text" name="email" value='<c:out value = "${email}"/>'/>
+								<label for="email" class="error"> <c:out value='${errors.get("emailError")}'/>  </label>
 							<p/>
 							<p>
 								<label for="pwd"> Password: </label>
 								<input type="password" name="pwd"/>
-								<label for="pwd" class="error"> <%= errors.get("pwdError") %>  </label>
+								<label for="pwd" class="error"> ${errors.get("pwdError")} </label>
 							<p/>
-							<%-- <p>
-								<label for="confirm"> Confirm password: </label>
-								<input type="password" name="confirm"/>
-								<label for="confirm" class="error"> <%= errors[3] %>  </label>
-							<p/> --%>
-							</br>
 							<p>
 								<label for="button"></label>
-								<input type="submit" value="Log in" name="button" class="button"/>
+								<input type="submit" value="Sign in" name="button" class="button"/>
 							<p/>
 							<input type="hidden" name="action" value="dologin"/>
 						</form>

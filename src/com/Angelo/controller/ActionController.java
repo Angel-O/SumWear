@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.Angelo.beans.User;
 
@@ -42,7 +43,7 @@ public class ActionController extends HttpServlet {
 		User standardUser = new User();
 		HashMap<String,String> errors = standardUser.getErrors();
 		request.setAttribute("errors", errors);
-		request.setAttribute("class", "prompt");
+		request.setAttribute("h5class", "prompt");
 		request.setAttribute("first", "");
 		request.setAttribute("last", "");
 		
@@ -54,7 +55,12 @@ public class ActionController extends HttpServlet {
 				switch (destination) {
 				case "reg": pageToGo = "/WEB-INF/register.jsp"; break;
 				case "sign": pageToGo = "/WEB-INF/signin.jsp"; break;
-				default: pageToGo = "/error.jsp";
+				case "bye": {
+					HttpSession session = request.getSession(); 
+					session.invalidate(); 
+					pageToGo = "/index.jsp"; break;
+				}
+				default: pageToGo = "/error.jsp"; break;
 				}
 			}
 		}
@@ -118,7 +124,7 @@ public class ActionController extends HttpServlet {
 			}*/		
 		}
 		else{
-			request.setAttribute("class", "error");
+			request.setAttribute("h5class", "error");
 			String notification = "Please correct wrong entries";
 			request.setAttribute("notification", notification);
 			HashMap<String,String> errors = user.getErrors();

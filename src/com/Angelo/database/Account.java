@@ -21,7 +21,7 @@ public class Account {
 		}
 	}
 	
-	public boolean signin(String email, String password) throws SQLException {
+	/*public boolean signin(String email, String password) throws SQLException {
 		
 		checkConnection(conn);
 		// handle no connection....
@@ -46,6 +46,30 @@ public class Account {
 			return false;
 		}
 		return true;
+	}*/
+	
+	public String signin(String email, String password) throws SQLException {
+		
+		checkConnection(conn);
+		// handle no connection....
+		String sql = "select first as firstname from users where email=? and password=?";
+		
+		PreparedStatement stmt = null;
+		String name = "";
+		
+		stmt = conn.prepareStatement(sql);
+		
+			
+		stmt.setString(1, email);
+		stmt.setString(2, password);
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+				
+				name = rs.getString("firstname");
+		}
+		rs.close();	
+			
+		return name;
 	}
 	
 	public boolean exists(String email) throws SQLException {

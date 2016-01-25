@@ -13,6 +13,7 @@ public class User {
 	private String pwd = "";
 	private String confirm = "";
 	private String notification = "";
+	private boolean loggedin = false;
 	private HashMap<String,String> errors = new HashMap<String,String>();
 	
 	
@@ -23,6 +24,7 @@ public class User {
 		this.errors.put("pwdError", "");
 		this.errors.put("confirmError", "");
 	}
+	// used to sign up
 	public User(String first, String last, String email, String pwd, String confirm) {
 		this.first = first;
 		this.last = last;
@@ -35,12 +37,18 @@ public class User {
 		this.errors.put("pwdError", "");
 		this.errors.put("confirmError", "");
 	}
-	
+	// used to log in
 	public User(String email, String pwd) {
 		this.email = email;
 		this.pwd = pwd;
 		this.errors.put("emailError", "");
 		this.errors.put("pwdError", "");
+	}
+	// used after logging in
+	public User(String first, String email, boolean loggedin) {
+		this.first = first;
+		this.email = email;
+		this.loggedin = loggedin;
 	}
 	public String getFirst() {
 		return first;
@@ -69,9 +77,9 @@ public class User {
 	public String getNotification() {
 		return this.notification;
 	}
-	/*public String[] getErrors(){
-		return this.errors;
-	}*/
+	public boolean isLoggedin(){
+		return this.loggedin;
+	}
 	
 	public HashMap<String, String> getErrors(){
 		return this.errors;

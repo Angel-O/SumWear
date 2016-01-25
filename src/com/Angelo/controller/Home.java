@@ -13,17 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.Angelo.beans.User;
 
 /**
- * Servlet implementation class Controller
+ * Servlet implementation class Home
  */
-//@WebServlet("/Controller")
-@WebServlet(name = "Controller", urlPatterns = {"/Controller"}) // add /*
-public class Controller extends HttpServlet {
+//@WebServlet("/Home")
+@WebServlet(name = "Home", urlPatterns = {"/Home"}) // add /*
+public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Controller() {
+    public Home() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -65,10 +65,12 @@ public class Controller extends HttpServlet {
 		else {
 			switch (destination) {
 			
-				case "shop" : pageToGo += "/shop.jsp"; break;
+				case "shop" : pageToGo += "/DBmanagerJndi"; break;
 				case "join" : pageToGo += "/joinus.jsp"; break;
 				case "home" : pageToGo += "/index.jsp"; break;
 				case "site" : pageToGo += "/sitemap.jsp"; break;
+				case "more" : pageToGo += "/tempage.jsp"; break;
+				case "bye" : pageToGo += "/ActionController"; break;
 				case "reg" : pageToGo += "/ActionController"; break;
 				case "sign" : pageToGo += "/ActionController"; break;
 				default: pageToGo += "/error.jsp"; break;

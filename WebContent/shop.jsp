@@ -1,21 +1,16 @@
-<% String root = getServletContext().getInitParameter("root"); %>
-<!doctype html>
-<html>
-	<head>
-		<title>SumWear - Shop page</title>
-		
-<%@ include file = "includes/header.jsp" %>
+<%! String title = "SumWear - Shop page"; %>
+<% request.setAttribute("title", title); %>		
+		<%@ include file = "includes/header.jsp" %>
 
 				<nav id = "mainnavigationmenu">
 					<ul>
-						<li><a href = "<%= root %>/Controller?dest=home">HOME</a></li>
+						<li><a href = "<%= root %>/Home">HOME</a></li>
 						<li><a class = "currentpage">SHOP</a></li>
-						<li><a href = "<%= root %>/Controller?dest=join">JOIN US</a></li>
+						<li><a href = "<%= root %>/Home?dest=join">JOIN US</a></li>
 					</ul>
 				</nav>
-			</header>
 			<nav id = "location">
-				<a href = "<%= root %>/Controller?dest=home">home</a> > shop
+				<a href = "<%= root %>/Home">home</a> > shop
 			</nav>
 			<div id = "columnsbox">
 				<nav id = "navigationleftcol">

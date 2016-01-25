@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.naming.Context;
@@ -17,10 +18,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import com.Angelo.beans.Product;
 import com.Angelo.beans.User;
 import com.Angelo.database.Account;
+import com.Angelo.database.DisplayShop;
 
 /**
  * Servlet implementation class DBmanagerJndi
@@ -58,24 +62,48 @@ public class DBmanagerJndi extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Connection conn = null;
-		try {
-			conn = ds.getConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		// use connection
 		PrintWriter out = response.getWriter();
-		out.println("Connected to database");
+		String destination = (String) request.getAttribute("dest");
 		
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// at the moment only one destination leads to this controller...
+		if (destination != null) {
+			
+			// try and open connection with data source
+			Connection conn = null;
+			try {
+				conn = ds.getConnection();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				out.println("NOT Connected to database: GET");
+				return;
+			}
+			
+			// use connection
+			// out.println("Connected to database: GET");
+			ArrayList<Product> itemList = new ArrayList<Product>();
+			DisplayShop shop = new DisplayShop(conn);
+			try {
+				itemList = shop.createItemList();
+				request.setAttribute("itemList", itemList);
+				request.getRequestDispatcher("/newshop.jsp").forward(request, response);
+				
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				//e1.printStackTrace(); return;
+				out.println("database under maintenance");
+			}
+			
+			// close connection
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
 	}
 
 	/**
@@ -95,8 +123,7 @@ public class DBmanagerJndi extends HttpServlet {
 		}
 		
 		// use connection
-		//PrintWriter out = response.getWriter();
-		//out.println("Connected to database");
+		// out.println("Connected to database");
 		
 		Account account = new Account(conn);
 		String email = (String) request.getAttribute("email");
@@ -109,9 +136,19 @@ public class DBmanagerJndi extends HttpServlet {
 			switch (action){
 				case "dologin" : {
 					
-					if (account.signin(email, password)){
+					/*if (account.signin(email, password)){
 						pageToGo += "/process.jsp";
 						// to do: create session...
+						HttpSession session = request.getSession();
+						session.setAttribute("loggedInUser", new User());
+						
+					}*/
+					String name = account.signin(email, password);
+					if (!name.equals("")){
+						pageToGo += "/index.jsp";
+						// to do: create session...
+						HttpSession session = request.getSession();
+						session.setAttribute("loggedInUser", new User(name, email, true));	
 					}
 					else{
 						//inline errors not needed. If we got to this point the data has already been validated
@@ -132,7 +169,9 @@ public class DBmanagerJndi extends HttpServlet {
 						String last = (String) request.getAttribute("last");
 						account.createAccount(email, password, first, last);
 						pageToGo += "/welcome.jsp";
-						// to do: enter data to database and start session
+						
+						HttpSession session = request.getSession();
+						session.setAttribute("loggedInUser", new User(first, email, true));	
 					}
 					else{
 						//inline errors not needed. If we got to this point the data has already been validated
